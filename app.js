@@ -6,6 +6,11 @@ const search = document.querySelector('#resource-search');
 const emptyState = document.querySelector('#empty-state');
 const expandButtons = document.querySelectorAll('[data-expand]');
 const chapters = document.querySelectorAll('.chapter-card');
+const videoButtons = document.querySelectorAll('[data-video-id]');
+const videoModal = document.querySelector('#video-modal');
+const videoIframe = document.querySelector('#video-modal-iframe');
+const videoClose = document.querySelector('.video-modal-close');
+const videoBackdrop = document.querySelector('.video-modal-backdrop');
 let activeFilter = 'all';
 
 function normalize(value) {
@@ -60,6 +65,27 @@ expandButtons.forEach((button) => {
       chapter.open = shouldOpen;
     });
   });
+});
+
+function closeVideo() {
+  videoModal.hidden = true;
+  videoIframe.src = '';
+}
+
+videoButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    videoIframe.src = `https://www.youtube.com/embed/${button.dataset.videoId}?autoplay=1`;
+    videoModal.hidden = false;
+  });
+});
+
+videoClose.addEventListener('click', closeVideo);
+videoBackdrop.addEventListener('click', closeVideo);
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !videoModal.hidden) {
+    closeVideo();
+  }
 });
 
 updateResources();

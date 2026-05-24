@@ -362,7 +362,8 @@ h3 { line-height: 1.15; margin-bottom: 10px; }
   gap: 8px;
 }
 
-.lesson-links a {
+.lesson-links a,
+.video-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -372,6 +373,9 @@ h3 { line-height: 1.15; margin-bottom: 10px; }
   background: #eaf1ff;
   font-size: 0.9rem;
   font-weight: 800;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .resource-actions a,
@@ -503,4 +507,60 @@ h3 { line-height: 1.15; margin-bottom: 10px; }
   .chapter-card summary { align-items: flex-start; flex-direction: column; }
 
   .footer-grid { flex-direction: column; align-items: flex-start; }
+}
+
+.video-modal[hidden] {
+  display: none;
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.video-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 32, 51, 0.72);
+}
+
+.video-modal-box {
+  position: relative;
+  width: min(900px, 100%);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.video-modal-frame {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.video-modal-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
